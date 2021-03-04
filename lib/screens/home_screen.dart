@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:provider/provider.dart';
 
-import 'package:flutterdex/widgets/homeSearch.dart';
+import '../widgets/home_search.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<PokeProvider>(context, listen: false).getPokemonData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:provider/provider.dart';
 
-import 'package:flutterdex/screens/homeScreen.dart';
+import './screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,22 +11,25 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Dex',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: Colors.transparent,
-          iconTheme: IconThemeData(
-            color: Colors.black,
+    return ChangeNotifierProvider(
+      create: (context) => PokeProvider(),
+      child: MaterialApp(
+        title: 'Flutter Dex',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Colors.transparent,
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            ),
+            elevation: 0,
           ),
-          elevation: 0,
+          scaffoldBackgroundColor: Colors.white,
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        home: HomeScreen(),
       ),
-      home: HomeScreen(),
     );
   }
 }
