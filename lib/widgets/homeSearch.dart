@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:FlutterDex/widgets/searchBar.dart';
 import 'package:flutter/material.dart';
+import '../widgets/searchBar.dart';
 
 class HomeSearch extends StatelessWidget {
   @override
