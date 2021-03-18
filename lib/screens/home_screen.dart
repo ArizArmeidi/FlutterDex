@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:flutterdex/widgets/poke_card.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/home_search.dart';
@@ -18,6 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<PokeProvider>(context);
+    final pokeData = data.pokeList;
     return Scaffold(
       body: Column(
         children: [
@@ -31,14 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               padding: EdgeInsets.all(25),
               width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => Container(
-                  margin: EdgeInsets.only(bottom: 25),
-                  child: Placeholder(
-                    fallbackHeight: 100,
+              child: ListView(
+                children: [
+                  Column(
+                    children: pokeData
+                        .map((item) => PokeCard(item, context))
+                        .toList(),
                   ),
-                ),
+                ],
               ),
             ),
           ),
