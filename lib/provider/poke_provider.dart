@@ -12,7 +12,7 @@ class PokeProvider with ChangeNotifier {
   Pokemon pokemon = Pokemon();
   List<Pokemon> pokeList = [];
 
-  getPokemonData() async {
+  getHomeData() async {
     int pokeNumber = 5;
     List<Pokemon> tempList = [];
 
@@ -41,31 +41,3 @@ class PokeProvider with ChangeNotifier {
     }
   }
 }
-
-// Uri url = Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=10');
-// Uri listUrl;
-// List pokeUrl = [];
-// List tempPoke = [];
-// try {
-//   final response = await http.get(url);
-//   final extractedData = json.decode(response.body) as Map<String, dynamic>;
-//   var tempData = [];
-//   List items = extractedData['results'];
-//   tempData = items.map((data) => PokeList.getUrl(data)).toList();
-//   _pokelist = tempData;
-//   _pokelist.forEach((element) async {
-//     Uri myUrl = Uri.parse(element.mainUrl);
-//     listUrl = myUrl;
-//     pokeUrl.add(listUrl);
-//   });
-//   pokeUrl.forEach((element) async {
-//     final urlResponse = await http.get(element);
-//     final data = json.decode(urlResponse.body) as Map<String, dynamic>;
-//     tempPoke.add(Pokemon.fromJson(data));
-//   });
-//   pokemon = tempPoke;
-//   inspect(pokemon);
-//   notifyListeners();
-// } catch (e) {
-//   print(e);
-// }

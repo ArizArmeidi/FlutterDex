@@ -14,23 +14,36 @@ class PokeCard extends StatelessWidget {
       height: 105,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(20),
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 20, top: 5),
       decoration: BoxDecoration(
         color: setCardColor(poke.type1.toString()),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          Text('#' + poke.id.toString()),
-          Text(
-            toBeginningOfSentenceCase(poke.name),
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 25,
-              color: Colors.white,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('#' + poke.id.toString()),
+              Text(
+                toBeginningOfSentenceCase(poke.name),
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
+          Positioned(
+            right: -35,
+            bottom: -50,
+            child: Image.network(
+              poke.sprite,
+              scale: 0.55,
+            ),
+          )
         ],
       ),
     );

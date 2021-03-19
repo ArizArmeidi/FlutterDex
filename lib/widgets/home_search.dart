@@ -12,18 +12,19 @@ class HomeSearch extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Pokédex',
+            'FlutterDex',
             style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 35,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5, right: 45),
+            padding: const EdgeInsets.only(top: 10, right: 45),
             child: Text(
               'Search Pokémon by entering their name or using the Pokédex number.',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
+                fontSize: 17,
                 color: Colors.grey[600],
               ),
             ),

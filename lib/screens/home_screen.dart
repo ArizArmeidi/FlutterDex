@@ -14,7 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<PokeProvider>(context, listen: false).getPokemonData();
+    Provider.of<PokeProvider>(context, listen: false).getHomeData();
+  }
+
+  Future<void> _refreshData(BuildContext context) async {
+    await Provider.of<PokeProvider>(context, listen: false).getHomeData();
   }
 
   @override
@@ -23,11 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final pokeData = data.pokeList;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(25, 5, 25, 25),
+        padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 30),
+              padding: EdgeInsets.only(bottom: 15),
               height: MediaQuery.of(context).size.width / 1.5,
               width: MediaQuery.of(context).size.width,
               child: HomeSearch(),
@@ -35,15 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: data.isLoading
                   ? Center(child: CircularProgressIndicator())
-                  : ListView(
-                      padding: EdgeInsets.only(top: 10),
-                      children: [
-                        Column(
-                          children: pokeData
-                              .map((item) => PokeCard(item, context))
-                              .toList(),
-                        ),
-                      ],
+                  : RefreshIndicator(
+                      onRefresh: () => _refreshData(context),
+                      child: ListView(
+                        padding: EdgeInsets.only(top: 20),
+                        children: [
+                          Column(
+                            children: pokeData
+                                .map((item) => PokeCard(item, context))
+                                .toList(),
+                          ),
+                        ],
+                      ),
                     ),
             ),
           ],
