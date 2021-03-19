@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
+import 'package:flutterdex/helpers/map_typeIcon.dart';
 import 'package:intl/intl.dart';
 
 class TypeCard extends StatelessWidget {
@@ -7,22 +8,37 @@ class TypeCard extends StatelessWidget {
   TypeCard(this.type);
   @override
   Widget build(BuildContext context) {
+    String typeIcon = setTypeIcon(type);
+    String typeText = toBeginningOfSentenceCase(type);
     return Material(
       elevation: 2,
       shadowColor: setTypeColor(type),
       borderRadius: BorderRadius.circular(3),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
         decoration: BoxDecoration(
           color: setTypeColor(type),
           borderRadius: BorderRadius.circular(3),
         ),
-        child: Text(
-          toBeginningOfSentenceCase(type),
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              typeIcon,
+              style: TextStyle(
+                fontFamily: 'PokeGoTypes',
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(width: 5),
+            Text(
+              typeText,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );
