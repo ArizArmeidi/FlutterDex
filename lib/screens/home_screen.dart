@@ -34,15 +34,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               padding: EdgeInsets.all(25),
               width: MediaQuery.of(context).size.width,
-              child: ListView(
-                children: [
-                  Column(
-                    children: pokeData
-                        .map((item) => PokeCard(item, context))
-                        .toList(),
-                  ),
-                ],
-              ),
+              child: data.isLoading
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView(
+                      children: [
+                        Column(
+                          children: pokeData
+                              .map((item) => PokeCard(item, context))
+                              .toList(),
+                        ),
+                      ],
+                    ),
             ),
           ),
         ],

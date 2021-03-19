@@ -7,15 +7,17 @@ import 'dart:convert';
 import 'package:flutterdex/models/pokemon.dart';
 
 class PokeProvider with ChangeNotifier {
+  bool isLoading;
   Pokemon pokemon = Pokemon();
   List<Pokemon> pokeList = [];
 
   getPokemonData() async {
-    int pokeNumber = 2;
+    int pokeNumber = 5;
     List<Pokemon> tempList = [];
 
-    for (var index = 1; index < pokeNumber + 1; index++) {
+    for (int index = 1; index < pokeNumber + 1; index++) {
       try {
+        isLoading = true;
         Uri url = Uri.parse('https://pokeapi.co/api/v2/pokemon/$index/');
         final response = await http.get(url);
         final responseData = json.decode(response.body) as Map<String, dynamic>;
@@ -24,8 +26,12 @@ class PokeProvider with ChangeNotifier {
         throw (e);
       }
     }
-    pokeList = tempList;
-    inspect(pokeList);
+    if (tempList.length == pokeNumber) {
+      pokeList = tempList;
+      isLoading = false;
+      notifyListeners();
+      inspect(pokeList);
+    }
   }
 }
 
