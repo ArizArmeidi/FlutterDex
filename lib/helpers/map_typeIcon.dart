@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 String setTypeIcon(String type) {
   switch (type) {
     case 'fire':

@@ -12,9 +12,8 @@ class PokeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 115,
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
       margin: EdgeInsets.only(bottom: 20, top: 5),
       decoration: BoxDecoration(
         color: setCardColor(poke.type1.toString()),
