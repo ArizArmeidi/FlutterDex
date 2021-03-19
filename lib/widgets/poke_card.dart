@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/widgets/type_card.dart';
 import 'package:intl/intl.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 
@@ -11,13 +12,20 @@ class PokeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 105,
+      height: 115,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.only(bottom: 20, top: 5),
       decoration: BoxDecoration(
         color: setCardColor(poke.type1.toString()),
         borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: setCardColor(poke.type1.toString()).withOpacity(0.5),
+            blurRadius: 5,
+            offset: Offset(2, 3),
+          ),
+        ],
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -25,7 +33,10 @@ class PokeCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('#' + poke.id.toString()),
+              Text(
+                '#' + poke.id.toString(),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
+              ),
               Text(
                 toBeginningOfSentenceCase(poke.name),
                 style: TextStyle(
@@ -34,6 +45,14 @@ class PokeCard extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
+              SizedBox(height: 5),
+              Row(
+                children: [
+                  if (poke.type1 != null) TypeCard(poke.type1),
+                  SizedBox(width: 5),
+                  if (poke.type2 != null) TypeCard(poke.type2),
+                ],
+              )
             ],
           ),
           Positioned(
