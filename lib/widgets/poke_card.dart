@@ -14,7 +14,7 @@ class PokeCard extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
-      margin: EdgeInsets.only(bottom: 20, top: 5),
+      margin: EdgeInsets.only(bottom: 20, top: 5, left: 5, right: 5),
       decoration: BoxDecoration(
         color: setCardColor(poke.type1.toString()),
         borderRadius: BorderRadius.circular(10),
@@ -59,7 +59,7 @@ class PokeCard extends StatelessWidget {
             bottom: -50,
             child: Image.network(
               poke.sprite,
-              scale: 0.55,
+              scale: 0.5,
             ),
           )
         ],

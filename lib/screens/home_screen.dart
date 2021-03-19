@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final pokeData = data.pokeList;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(25, 5, 25, 0),
+        padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
         child: Column(
           children: [
             Container(
