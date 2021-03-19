@@ -22,21 +22,21 @@ class _HomeScreenState extends State<HomeScreen> {
     final data = Provider.of<PokeProvider>(context);
     final pokeData = data.pokeList;
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(25, 30, 25, 15),
-            height: MediaQuery.of(context).size.width / 1.5,
-            width: MediaQuery.of(context).size.width,
-            child: HomeSearch(),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(25),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(25, 5, 25, 25),
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 30),
+              height: MediaQuery.of(context).size.width / 1.5,
               width: MediaQuery.of(context).size.width,
+              child: HomeSearch(),
+            ),
+            Expanded(
               child: data.isLoading
                   ? Center(child: CircularProgressIndicator())
                   : ListView(
+                      padding: EdgeInsets.only(top: 10),
                       children: [
                         Column(
                           children: pokeData
@@ -46,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

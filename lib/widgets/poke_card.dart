@@ -12,6 +12,7 @@ class PokeCard extends StatelessWidget {
       height: 105,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(20),
+      margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(10),
@@ -21,7 +22,6 @@ class PokeCard extends StatelessWidget {
         children: [
           Text('#' + poke.id.toString()),
           Text(poke.name),
-          // Text(poke.name),
         ],
       ),
     );
