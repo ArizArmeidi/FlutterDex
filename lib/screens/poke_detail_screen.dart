@@ -61,7 +61,7 @@ class PokeDetailScreen extends StatelessWidget {
                     Text(
                       toBeginningOfSentenceCase(pokeData.name),
                       style: TextStyle(
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w400,
                         fontSize: 35,
                       ),
                     ),
