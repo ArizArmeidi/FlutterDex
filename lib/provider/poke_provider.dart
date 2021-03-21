@@ -20,7 +20,7 @@ class PokeProvider with ChangeNotifier {
       int pokeIndex;
       Random rnd;
       int min = 1;
-      int max = 151;
+      int max = 893;
       rnd = new Random();
       pokeIndex = min + rnd.nextInt(max - min);
       try {

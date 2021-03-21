@@ -13,7 +13,7 @@ Color setCardColor(String type) {
       return Color(0xff91eb5b);
       break;
     case 'water':
-      return Color(0xFF9DB7F5);
+      return Color(0xFF69b9e3);
       break;
     case 'rock':
       return Color(0xffedd040);
