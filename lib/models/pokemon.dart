@@ -16,10 +16,11 @@ class Pokemon with ChangeNotifier {
   });
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
+    String pokeId = json['id'].toString();
     final List types = json['types'];
     if (types.length == 1) {
       return Pokemon(
-        id: json['id'],
+        id: pokeId,
         name: json['name'],
         sprite: json['sprites']['front_default'],
         type1: json['types'][0]['type']['name'],
@@ -27,7 +28,7 @@ class Pokemon with ChangeNotifier {
       );
     } else {
       return Pokemon(
-        id: json['id'],
+        id: pokeId,
         name: json['name'],
         sprite: json['sprites']['front_default'],
         type1: json['types'][0]['type']['name'],

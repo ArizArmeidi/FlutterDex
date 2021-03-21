@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:flutterdex/screens/poke_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screens/home_screen.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomeScreen(),
+        routes: {
+          PokeDetailScreen.routeName: (ctx) => PokeDetailScreen(),
+        },
       ),
     );
   }

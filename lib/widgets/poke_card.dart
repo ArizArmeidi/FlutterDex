@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/screens/poke_detail_screen.dart';
 import 'package:flutterdex/widgets/type_card.dart';
 import 'package:intl/intl.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
@@ -13,7 +14,8 @@ class PokeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(poke.name);
+        Navigator.of(context)
+            .pushNamed(PokeDetailScreen.routeName, arguments: poke.id);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

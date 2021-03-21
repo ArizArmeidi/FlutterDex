@@ -9,10 +9,10 @@ import 'package:flutterdex/models/pokemon.dart';
 
 class PokeProvider with ChangeNotifier {
   bool isLoading;
-  Pokemon pokemon = Pokemon();
   List<Pokemon> pokeList = [];
+  Pokemon pokemon = Pokemon();
 
-  getHomeData() async {
+  Future<void> getHomeData() async {
     int pokeNumber = 5;
     List<Pokemon> tempList = [];
 
@@ -25,7 +25,7 @@ class PokeProvider with ChangeNotifier {
       pokeIndex = min + rnd.nextInt(max - min);
       try {
         isLoading = true;
-        Uri url = Uri.parse('https://pokeapi.co/api/v2/pokemon/$pokeIndex/');
+        Uri url = Uri.parse('https://pokeapi.co/api/v2/pokemon/$pokeIndex');
         final response = await http.get(url);
         final responseData = json.decode(response.body) as Map<String, dynamic>;
         tempList.add(Pokemon.fromJson(responseData));
@@ -39,5 +39,9 @@ class PokeProvider with ChangeNotifier {
       notifyListeners();
       inspect(pokeList);
     }
+  }
+
+  Pokemon getPokeData(String id) {
+    return pokeList.firstWhere((data) => data.id == id);
   }
 }
