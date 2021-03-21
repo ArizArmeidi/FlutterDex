@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PokeDetailScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class PokeDetailScreen extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                height: MediaQuery.of(context).size.width / 1.3,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -30,8 +31,15 @@ class PokeDetailScreen extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                 ),
+                child: Text(
+                  toBeginningOfSentenceCase(pokeData.name),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 35,
+                  ),
+                ),
               ),
-            )
+            ),
           ],
         ));
   }
