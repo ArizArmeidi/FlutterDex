@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:flutterdex/widgets/poke_stats.dart';
 import 'package:flutterdex/widgets/type_card.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,8 @@ class PokeDetailScreen extends StatelessWidget {
                         if (pokeData.type2 != null) SizedBox(width: 10),
                         if (pokeData.type2 != null) TypeCard(pokeData.type2),
                       ],
-                    )
+                    ),
+                    PokeStats(pokeData),
                   ],
                 ),
               ),
