@@ -28,7 +28,7 @@ Color setCardColor(String type) {
       return Color(0xffd651d4);
       break;
     case 'electric':
-      return Color(0xffffe100);
+      return Color(0xffF7D02C);
       break;
     case 'ground':
       return Color(0xfff5d37d);
@@ -93,7 +93,7 @@ Color setTypeColor(String type) {
       return Color(0xffA33EA1);
       break;
     case 'electric':
-      return Color(0xffF7D02C);
+      return Color(0xfffce321);
       break;
     case 'ground':
       return Color(0xffE2BF65);

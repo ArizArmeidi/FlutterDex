@@ -36,6 +36,13 @@ class TypeCard extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
+                shadows: <Shadow>[
+                  Shadow(
+                    offset: Offset(1.5, 2),
+                    blurRadius: 3.0,
+                    color: Colors.grey,
+                  ),
+                ],
               ),
             ),
           ],

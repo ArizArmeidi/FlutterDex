@@ -13,40 +13,43 @@ class PokeStats extends StatelessWidget {
   }
 
   Widget statsBar(String label, double value) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontWeight: FontWeight.w900,
-            color: setCardColor(pokeData.type1),
-          ),
-        ),
-        Spacer(),
-        Text(
-          convertValue(value),
-          style: TextStyle(
-            fontWeight: FontWeight.w900,
-            color: setCardColor(pokeData.type1),
-          ),
-        ),
-        Container(
-          width: 250,
-          height: 15,
-          margin: EdgeInsets.only(left: 15),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            child: LinearProgressIndicator(
-              backgroundColor: Colors.grey[350],
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(setCardColor(pokeData.type1)),
-              value: value,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              color: setCardColor(pokeData.type1),
             ),
           ),
-        ),
-      ],
+          Spacer(),
+          Text(
+            convertValue(value),
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              color: setCardColor(pokeData.type1),
+            ),
+          ),
+          Container(
+            width: 250,
+            height: 10,
+            margin: EdgeInsets.only(left: 15),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: LinearProgressIndicator(
+                backgroundColor: Colors.grey[300],
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(setCardColor(pokeData.type1)),
+                value: value,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -57,7 +60,11 @@ class PokeStats extends StatelessWidget {
       child: Column(
         children: [
           statsBar('HP', pokeData.hp),
-          statsBar('Attack', pokeData.attack),
+          statsBar('ATK', pokeData.attack),
+          statsBar('DEF', pokeData.defense),
+          statsBar('SATK', pokeData.spAttack),
+          statsBar('SDEF', pokeData.spDefense),
+          statsBar('SPD', pokeData.speed),
         ],
       ),
     );
