@@ -65,6 +65,7 @@ class PokeStats extends StatelessWidget {
           statsBar('SATK', pokeData.spAttack),
           statsBar('SDEF', pokeData.spDefense),
           statsBar('SPD', pokeData.speed),
+          Text(pokeData.description),
         ],
       ),
     );
