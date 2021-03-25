@@ -14,7 +14,7 @@ class PokeProvider with ChangeNotifier {
   Pokemon pokemon = Pokemon();
 
   Future<void> getHomeData() async {
-    int pokeNumber = 1;
+    int pokeNumber = 5;
     List<Pokemon> tempList = [];
     List<Pokemon> tempDescList = [];
 

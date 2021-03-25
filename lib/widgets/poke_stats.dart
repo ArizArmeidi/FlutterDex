@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/models/pokemon.dart';
@@ -59,13 +61,25 @@ class PokeStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
       child: Column(
         children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: FittedBox(
+              child: Text(
+                pokeData.description,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 25),
           statsBar('HP', pokeData.hp),
           statsBar('ATK', pokeData.attack),
           statsBar('DEF', pokeData.defense),
           statsBar('SATK', pokeData.spAttack),
           statsBar('SDEF', pokeData.spDefense),
           statsBar('SPD', pokeData.speed),
-          Text(pokeData.description),
         ],
       ),
     );
