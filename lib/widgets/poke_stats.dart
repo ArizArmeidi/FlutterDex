@@ -58,21 +58,9 @@ class PokeStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
       child: Column(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: FittedBox(
-              child: Text(
-                pokeData.description,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                ),
-              ),
-            ),
-          ),
           SizedBox(height: 25),
           statsBar('HP', pokeData.hp),
           statsBar('ATK', pokeData.attack),

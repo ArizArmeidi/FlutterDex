@@ -1,13 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
+import 'package:flutterdex/models/pokemon.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
 import 'package:flutterdex/widgets/poke_stats.dart';
 import 'package:flutterdex/widgets/type_card.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class PokeDetailScreen extends StatelessWidget {
+class PokeDetailScreen extends StatefulWidget {
   static const routeName = '/pokeDetailScreen';
+
+  @override
+  _PokeDetailScreenState createState() => _PokeDetailScreenState();
+}
+
+class _PokeDetailScreenState extends State<PokeDetailScreen> {
+  int _selectedIndex = 0;
+
+  Widget _buttonBuilder(Pokemon pokeData, String title, int myIndex) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = myIndex;
+        });
+      },
+      child: Container(
+        height: 35,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: _selectedIndex == myIndex
+              ? setCardColor(pokeData.type1)
+              : Colors.transparent,
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                color: _selectedIndex == myIndex
+                    ? Colors.white
+                    : setCardColor(pokeData.type1),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +122,43 @@ class PokeDetailScreen extends StatelessWidget {
                         if (pokeData.type2 != null) TypeCard(pokeData.type2),
                       ],
                     ),
-                    PokeStats(pokeData),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 25,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      child: FittedBox(
+                        child: Text(
+                          pokeData.description,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buttonBuilder(pokeData, 'STATS', 0),
+                        _buttonBuilder(pokeData, 'EVOLUTIONS', 1),
+                        _buttonBuilder(pokeData, 'MOVES', 2),
+                      ],
+                    ),
+                    _selectedIndex == 0
+                        ? PokeStats(pokeData)
+                        : _selectedIndex == 1
+                            ? Expanded(
+                                child: Container(
+                                  color: Colors.blue,
+                                ),
+                              )
+                            : Expanded(
+                                child: Container(
+                                  color: Colors.red,
+                                ),
+                              )
                   ],
                 ),
               ),

@@ -34,7 +34,7 @@ Color setCardColor(String type) {
       return Color(0xfff5d37d);
       break;
     case 'ice':
-      return Color(0xffBCE6E6);
+      return Color(0xff79dbdb);
       break;
     case 'dark':
       return Color(0xffa37e65);
