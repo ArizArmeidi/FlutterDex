@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: data.isLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? Center(child: Image.asset('images/pokeLoad.gif'))
                   : RefreshIndicator(
                       onRefresh: () => _refreshData(context),
                       child: ListView(

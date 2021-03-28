@@ -17,22 +17,14 @@ class PokeDetailScreen extends StatefulWidget {
 class _PokeDetailScreenState extends State<PokeDetailScreen> {
   int _selectedIndex = 0;
   var _isInit = true;
-  bool _isLoading = false;
 
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit) {
-      setState(() {
-        _isLoading = true;
-      });
       final pokeId = ModalRoute.of(context).settings.arguments as String;
       Provider.of<PokeProvider>(context, listen: false)
           .getPokeData(pokeId)
-          .then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
+          .then((_) {});
     }
     _isInit = false;
   }
@@ -81,7 +73,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
             ? Colors.white
             : setCardColor(pokeData.type1),
         body: providerData.isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: Image.asset('images/pokeLoad.gif'))
             : Column(
                 children: [
                   Container(
