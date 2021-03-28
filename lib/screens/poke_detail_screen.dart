@@ -16,6 +16,26 @@ class PokeDetailScreen extends StatefulWidget {
 
 class _PokeDetailScreenState extends State<PokeDetailScreen> {
   int _selectedIndex = 0;
+  var _isInit = true;
+  bool _isLoading = false;
+
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      final pokeId = ModalRoute.of(context).settings.arguments as String;
+      Provider.of<PokeProvider>(context, listen: false)
+          .getPokeData(pokeId)
+          .then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+  }
 
   Widget _buttonBuilder(Pokemon pokeData, String title, int myIndex) {
     return GestureDetector(
@@ -53,117 +73,124 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final pokeId = ModalRoute.of(context).settings.arguments as String;
-    final pokeData =
-        Provider.of<PokeProvider>(context, listen: false).getPokeData(pokeId);
+    final providerData = Provider.of<PokeProvider>(context);
+    final pokeData = providerData.pokemon;
 
     return Scaffold(
-        backgroundColor: setCardColor(pokeData.type1),
-        body: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.width / 2,
-              color: setCardColor(pokeData.type1),
-            ),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width / 4.5,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
+        backgroundColor: providerData.isLoading
+            ? Colors.white
+            : setCardColor(pokeData.type1),
+        body: providerData.isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.width / 2,
+                    color: providerData.isLoading
+                        ? Colors.white
+                        : setCardColor(pokeData.type1),
                   ),
-                ),
-                Positioned(
-                  right: 35,
-                  bottom: -50,
-                  left: 35,
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'images/pokeLoad.gif',
-                    image: pokeData.sprite,
-                    imageScale: 0.35,
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(top: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      toBeginningOfSentenceCase(pokeData.name),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 35,
-                      ),
-                    ),
-                    Text(
-                      '#' + pokeData.id.toString(),
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (pokeData.type1 != null) TypeCard(pokeData.type1),
-                        if (pokeData.type2 != null) SizedBox(width: 10),
-                        if (pokeData.type2 != null) TypeCard(pokeData.type2),
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 25,
-                        vertical: 25,
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      child: FittedBox(
-                        child: Text(
-                          pokeData.description,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width / 4.5,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buttonBuilder(pokeData, 'STATS', 0),
-                        _buttonBuilder(pokeData, 'EVOLUTIONS', 1),
-                        _buttonBuilder(pokeData, 'MOVES', 2),
-                      ],
-                    ),
-                    _selectedIndex == 0
-                        ? PokeStats(pokeData)
-                        : _selectedIndex == 1
-                            ? Expanded(
-                                child: Container(
-                                  color: Colors.blue,
+                      Positioned(
+                        right: 35,
+                        bottom: -50,
+                        left: 35,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'images/pokeLoad.gif',
+                          image: pokeData.sprite,
+                          imageScale: 0.35,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.only(top: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            toBeginningOfSentenceCase(pokeData.name),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 35,
+                            ),
+                          ),
+                          Text(
+                            '#' + pokeData.id.toString(),
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (pokeData.type1 != null)
+                                TypeCard(pokeData.type1),
+                              if (pokeData.type2 != null) SizedBox(width: 10),
+                              if (pokeData.type2 != null)
+                                TypeCard(pokeData.type2),
+                            ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 25,
+                              vertical: 25,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: FittedBox(
+                              child: Text(
+                                pokeData.description,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
                                 ),
-                              )
-                            : Expanded(
-                                child: Container(
-                                  color: Colors.red,
-                                ),
-                              )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ));
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _buttonBuilder(pokeData, 'STATS', 0),
+                              _buttonBuilder(pokeData, 'EVOLUTIONS', 1),
+                              _buttonBuilder(pokeData, 'MOVES', 2),
+                            ],
+                          ),
+                          _selectedIndex == 0
+                              ? PokeStats(pokeData)
+                              : _selectedIndex == 1
+                                  ? Expanded(
+                                      child: Container(
+                                        color: Colors.blue,
+                                      ),
+                                    )
+                                  : Expanded(
+                                      child: Container(
+                                        color: Colors.red,
+                                      ),
+                                    )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ));
   }
 }

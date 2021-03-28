@@ -42,7 +42,9 @@ class _SearchBarState extends State<SearchBar> {
           ),
           hintText: "What Pokémon are you looking for? ",
         ),
-        onSubmitted: (value) {},
+        onSubmitted: (value) {
+          print(value);
+        },
       ),
     );
   }
