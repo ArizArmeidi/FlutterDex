@@ -6,7 +6,6 @@ import 'package:flutterdex/models/pokemon.dart';
 
 class PokeStats extends StatelessWidget {
   final Pokemon pokeData;
-
   PokeStats(this.pokeData);
 
   String convertValue(value) {

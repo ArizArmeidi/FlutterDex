@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/models/pokemon.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
+import 'package:flutterdex/widgets/poke_about.dart';
 import 'package:flutterdex/widgets/poke_stats.dart';
 import 'package:flutterdex/widgets/type_card.dart';
 import 'package:intl/intl.dart';
@@ -121,7 +122,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                           Text(
                             toBeginningOfSentenceCase(pokeData.name),
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w500,
                               fontSize: 35,
                             ),
                           ),
@@ -151,7 +152,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                               child: Text(
                                 pokeData.description,
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 15,
                                 ),
                               ),
@@ -160,19 +161,15 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              _buttonBuilder(pokeData, 'STATS', 0),
-                              _buttonBuilder(pokeData, 'EVOLUTIONS', 1),
+                              _buttonBuilder(pokeData, 'ABOUT', 0),
+                              _buttonBuilder(pokeData, 'STATS', 1),
                               _buttonBuilder(pokeData, 'MOVES', 2),
                             ],
                           ),
                           _selectedIndex == 0
-                              ? PokeStats(pokeData)
+                              ? PokeAbout(pokeData)
                               : _selectedIndex == 1
-                                  ? Expanded(
-                                      child: Container(
-                                        color: Colors.blue,
-                                      ),
-                                    )
+                                  ? PokeStats(pokeData)
                                   : Expanded(
                                       child: Container(
                                         color: Colors.red,

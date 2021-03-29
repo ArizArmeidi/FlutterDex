@@ -13,6 +13,9 @@ class Pokemon with ChangeNotifier {
   var spAttack;
   var spDefense;
   var description;
+  var height;
+  var weight;
+  var species;
 
   Pokemon({
     this.id,
@@ -27,6 +30,9 @@ class Pokemon with ChangeNotifier {
     this.spAttack,
     this.spDefense,
     this.description,
+    this.height,
+    this.weight,
+    this.species,
   });
 
   factory Pokemon.fromJson(
@@ -48,6 +54,7 @@ class Pokemon with ChangeNotifier {
       }
     }
     String pokeDesc = secJson['flavor_text_entries'][descIndex]['flavor_text'];
+    String pokeSpec = secJson['genera'][7]['genus'];
     double pokeHp = hp / 100;
     double pokeAttack = attack / 100;
     double pokeDef = defense / 100;
@@ -71,6 +78,9 @@ class Pokemon with ChangeNotifier {
         spAttack: pokeSpAttack,
         spDefense: pokespDefense,
         description: pokeDesc,
+        height: json['height'],
+        weight: json['weight'],
+        species: pokeSpec,
       );
     } else {
       return Pokemon(
@@ -86,6 +96,9 @@ class Pokemon with ChangeNotifier {
         spAttack: pokeSpAttack,
         spDefense: pokespDefense,
         description: pokeDesc,
+        height: json['height'],
+        weight: json['weight'],
+        species: pokeSpec,
       );
     }
   }
