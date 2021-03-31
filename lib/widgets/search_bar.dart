@@ -44,8 +44,10 @@ class _SearchBarState extends State<SearchBar> {
           hintText: "What Pokémon are you looking for? ",
         ),
         onSubmitted: (value) {
-          Navigator.of(context)
-              .pushNamed(PokeDetailScreen.routeName, arguments: value);
+          if (value.isNotEmpty) {
+            Navigator.of(context)
+                .pushNamed(PokeDetailScreen.routeName, arguments: value);
+          }
         },
       ),
     );
