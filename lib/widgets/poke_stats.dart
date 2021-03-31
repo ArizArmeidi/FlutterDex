@@ -60,7 +60,7 @@ class PokeStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
       child: Column(
         children: [
-          SizedBox(height: 25),
+          SizedBox(height: 15),
           statsBar('HP', pokeData.hp),
           statsBar('ATK', pokeData.attack),
           statsBar('DEF', pokeData.defense),

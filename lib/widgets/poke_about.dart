@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/pokemon.dart';
 import '../helpers/map_cardColor.dart';
@@ -17,6 +18,7 @@ class PokeAbout extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: 80,
@@ -37,7 +39,7 @@ class PokeAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
+      padding: const EdgeInsets.fromLTRB(25, 15, 25, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,6 +55,14 @@ class PokeAbout extends StatelessWidget {
           rowBuilder('Species', pokeData.species),
           rowBuilder('Height', convertValue(pokeData.height) + ' m'),
           rowBuilder('Weight', convertValue(pokeData.weight) + ' kg'),
+          rowBuilder(
+            'Abilities',
+            toBeginningOfSentenceCase(pokeData.ability1) +
+                '\n' +
+                toBeginningOfSentenceCase(pokeData.ability2) +
+                '\n' +
+                toBeginningOfSentenceCase(pokeData.ability3),
+          ),
         ],
       ),
     );

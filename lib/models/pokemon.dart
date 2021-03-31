@@ -16,6 +16,9 @@ class Pokemon with ChangeNotifier {
   var height;
   var weight;
   var species;
+  var ability1;
+  var ability2;
+  var ability3;
 
   Pokemon({
     this.id,
@@ -33,6 +36,9 @@ class Pokemon with ChangeNotifier {
     this.height,
     this.weight,
     this.species,
+    this.ability1,
+    this.ability2,
+    this.ability3,
   });
 
   factory Pokemon.fromJson(
@@ -61,45 +67,30 @@ class Pokemon with ChangeNotifier {
     double pokeSpAttack = spAttack / 100;
     double pokespDefense = spDefense / 100;
     double pokeSpeed = speed / 100;
+    List abilities = json['abilities'];
+    List types = json['types'];
 
-    final List types = json['types'];
-
-    if (types.length == 1) {
-      return Pokemon(
-        id: pokeId,
-        name: json['name'],
-        sprite: json['sprites']['front_default'],
-        type1: json['types'][0]['type']['name'],
-        type2: null,
-        hp: pokeHp,
-        attack: pokeAttack,
-        defense: pokeDef,
-        speed: pokeSpeed,
-        spAttack: pokeSpAttack,
-        spDefense: pokespDefense,
-        description: pokeDesc,
-        height: json['height'],
-        weight: json['weight'],
-        species: pokeSpec,
-      );
-    } else {
-      return Pokemon(
-        id: pokeId,
-        name: json['name'],
-        sprite: json['sprites']['front_default'],
-        type1: json['types'][0]['type']['name'],
-        type2: json['types'][1]['type']['name'],
-        hp: pokeHp,
-        attack: pokeAttack,
-        defense: pokeDef,
-        speed: pokeSpeed,
-        spAttack: pokeSpAttack,
-        spDefense: pokespDefense,
-        description: pokeDesc,
-        height: json['height'],
-        weight: json['weight'],
-        species: pokeSpec,
-      );
-    }
+    return Pokemon(
+      id: pokeId,
+      name: json['name'],
+      sprite: json['sprites']['front_default'],
+      type1: json['types'][0]['type']['name'],
+      type2: types.length == 2 ? json['types'][1]['type']['name'] : null,
+      hp: pokeHp,
+      attack: pokeAttack,
+      defense: pokeDef,
+      speed: pokeSpeed,
+      spAttack: pokeSpAttack,
+      spDefense: pokespDefense,
+      description: pokeDesc,
+      height: json['height'],
+      weight: json['weight'],
+      species: pokeSpec,
+      ability1: json['abilities'][0]['ability']['name'],
+      ability2:
+          abilities.length >= 2 ? json['abilities'][1]['ability']['name'] : '',
+      ability3:
+          abilities.length >= 3 ? json['abilities'][2]['ability']['name'] : '',
+    );
   }
 }
