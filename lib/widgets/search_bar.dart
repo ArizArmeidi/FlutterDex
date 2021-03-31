@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/screens/poke_detail_screen.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -43,7 +44,8 @@ class _SearchBarState extends State<SearchBar> {
           hintText: "What Pokémon are you looking for? ",
         ),
         onSubmitted: (value) {
-          print(value);
+          Navigator.of(context)
+              .pushNamed(PokeDetailScreen.routeName, arguments: value);
         },
       ),
     );
