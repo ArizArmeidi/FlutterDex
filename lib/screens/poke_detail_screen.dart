@@ -167,7 +167,9 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                             ],
                           ),
                           _selectedIndex == 0
-                              ? PokeAbout(pokeData)
+                              ? Expanded(
+                                  child: PokeAbout(pokeData),
+                                )
                               : _selectedIndex == 1
                                   ? PokeStats(pokeData)
                                   : Expanded(

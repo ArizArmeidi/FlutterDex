@@ -14,8 +14,9 @@ class PokeAbout extends StatelessWidget {
   }
 
   Widget rowBuilder(String text, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,16 +53,23 @@ class PokeAbout extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          rowBuilder('Species', pokeData.species),
-          rowBuilder('Height', convertValue(pokeData.height) + ' m'),
-          rowBuilder('Weight', convertValue(pokeData.weight) + ' kg'),
-          rowBuilder(
-            'Abilities',
-            toBeginningOfSentenceCase(pokeData.ability1) +
-                '\n' +
-                toBeginningOfSentenceCase(pokeData.ability2) +
-                '\n' +
-                toBeginningOfSentenceCase(pokeData.ability3),
+          Flexible(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                rowBuilder('Species', pokeData.species),
+                rowBuilder('Height', convertValue(pokeData.height) + ' m'),
+                rowBuilder('Weight', convertValue(pokeData.weight) + ' kg'),
+                rowBuilder(
+                  'Abilities',
+                  toBeginningOfSentenceCase(pokeData.ability1) +
+                      '\n' +
+                      toBeginningOfSentenceCase(pokeData.ability2) +
+                      '\n' +
+                      toBeginningOfSentenceCase(pokeData.ability3),
+                ),
+              ],
+            ),
           ),
         ],
       ),
