@@ -10,6 +10,7 @@ import 'package:flutterdex/models/pokemon.dart';
 
 class PokeProvider with ChangeNotifier {
   bool isLoading;
+  bool isRequestError = false;
   List<CardModel> pokeList = [];
   List<Pokemon> descList = [];
   Pokemon pokemon = Pokemon();
@@ -17,7 +18,7 @@ class PokeProvider with ChangeNotifier {
   Future<void> getHomeData() async {
     int pokeNumber = 5;
     List<CardModel> tempList = [];
-
+    isRequestError = false;
     for (int index = 1; index < pokeNumber + 1; index++) {
       int pokeIndex;
       Random rnd;
@@ -44,6 +45,7 @@ class PokeProvider with ChangeNotifier {
   }
 
   Future<void> getPokeData(String id) async {
+    isRequestError = false;
     List<Pokemon> tempDescList = [];
     Uri url = Uri.parse('https://pokeapi.co/api/v2/pokemon/$id');
     Uri secUrl = Uri.parse('https://pokeapi.co/api/v2/pokemon-species/$id');
@@ -60,6 +62,9 @@ class PokeProvider with ChangeNotifier {
       notifyListeners();
       inspect(pokemon);
     } catch (e) {
+      isLoading = false;
+      isRequestError = true;
+      notifyListeners();
       throw (e);
     }
   }
