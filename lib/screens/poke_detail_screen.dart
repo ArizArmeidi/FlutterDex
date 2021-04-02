@@ -3,6 +3,7 @@ import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/models/pokemon.dart';
 import 'package:flutterdex/provider/poke_provider.dart';
 import 'package:flutterdex/widgets/poke_about.dart';
+import 'package:flutterdex/widgets/poke_moves.dart';
 import 'package:flutterdex/widgets/poke_stats.dart';
 import 'package:flutterdex/widgets/request_error.dart';
 import 'package:flutterdex/widgets/type_card.dart';
@@ -180,9 +181,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                                   : _selectedIndex == 1
                                       ? PokeStats(pokeData)
                                       : Expanded(
-                                          child: Container(
-                                            color: Colors.red,
-                                          ),
+                                          child: PokeMoves(pokeData),
                                         )
                             ],
                           ),

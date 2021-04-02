@@ -19,6 +19,7 @@ class Pokemon with ChangeNotifier {
   var ability1;
   var ability2;
   var ability3;
+  var moves;
 
   Pokemon({
     this.id,
@@ -39,6 +40,7 @@ class Pokemon with ChangeNotifier {
     this.ability1,
     this.ability2,
     this.ability3,
+    this.moves,
   });
 
   factory Pokemon.fromJson(
@@ -51,9 +53,9 @@ class Pokemon with ChangeNotifier {
     int spDefense = json['stats'][4]['base_stat'];
     int speed = json['stats'][5]['base_stat'];
     // need to find more effective way to access flavor text
-    List descJson = secJson['flavor_text_entries'];
+    List descList = secJson['flavor_text_entries'];
     int descIndex;
-    for (int i = 0; i < descJson.length; i++) {
+    for (int i = 0; i < descList.length; i++) {
       var desc = secJson['flavor_text_entries'][i]['language']['name'];
       if (desc == 'en') {
         descIndex = i;
@@ -69,6 +71,12 @@ class Pokemon with ChangeNotifier {
     double pokeSpeed = speed / 100;
     List abilities = json['abilities'];
     List types = json['types'];
+    List movesList = json['moves'];
+    List tempMovesList = [];
+    for (int i = 0; i < movesList.length; i++) {
+      var moves = json['moves'][i]['move']['name'];
+      tempMovesList.add(moves);
+    }
 
     return Pokemon(
       id: pokeId,
@@ -91,6 +99,7 @@ class Pokemon with ChangeNotifier {
           abilities.length >= 2 ? json['abilities'][1]['ability']['name'] : '',
       ability3:
           abilities.length >= 3 ? json['abilities'][2]['ability']['name'] : '',
+      moves: tempMovesList,
     );
   }
 }
