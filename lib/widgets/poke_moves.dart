@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/models/pokemon.dart';
 import 'package:intl/intl.dart';
 
@@ -6,10 +7,10 @@ class PokeMoves extends StatelessWidget {
   final Pokemon pokeData;
   PokeMoves(this.pokeData);
 
-  Widget moveLabel(dynamic text) {
+  Widget moveLabel(String text, dynamic pokeData) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: setTypeColor(pokeData.type1),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Center(
@@ -18,6 +19,13 @@ class PokeMoves extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
+            shadows: <Shadow>[
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 7,
+                color: Colors.grey,
+              ),
+            ],
           ),
         ),
       ),
@@ -32,10 +40,10 @@ class PokeMoves extends StatelessWidget {
       child: GridView.count(
         padding: EdgeInsets.zero,
         crossAxisCount: 3,
-        mainAxisSpacing: 2,
+        mainAxisSpacing: 4,
         childAspectRatio: 6 / 1.5,
-        crossAxisSpacing: 2,
-        children: moveList.map((item) => moveLabel(item)).toList(),
+        crossAxisSpacing: 4,
+        children: moveList.map((item) => moveLabel(item, pokeData)).toList(),
       ),
     );
   }

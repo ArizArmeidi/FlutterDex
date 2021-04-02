@@ -44,7 +44,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: _selectedIndex == myIndex
-              ? setCardColor(pokeData.type1)
+              ? setTypeColor(pokeData.type1)
               : Colors.transparent,
         ),
         child: Center(
@@ -57,7 +57,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
                 fontWeight: FontWeight.w800,
                 color: _selectedIndex == myIndex
                     ? Colors.white
-                    : setCardColor(pokeData.type1),
+                    : setTypeColor(pokeData.type1),
               ),
             ),
           ),
