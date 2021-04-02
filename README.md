@@ -9,6 +9,10 @@
 # FlutterDex
 
 A simple PokeDex App created using [Flutter](https://flutter.dev/) and [Dart](https://dart.dev/) and using API from [PokeApi](https://pokeapi.co/)
+UI Design inspired by :
+- [Home Screen](https://www.pinterest.com/pin/133982157654115616/)
+- [Pokedex iOS App](https://dribbble.com/shots/4862523-Pokedex-iOS-app-Squirtle) - by [Daniel Motta](https://dribbble.com/DanielMots)
+
 
 ## Features
 
