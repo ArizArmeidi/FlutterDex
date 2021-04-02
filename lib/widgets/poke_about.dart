@@ -47,7 +47,7 @@ class PokeAbout extends StatelessWidget {
           Text(
             'Pokedex Data',
             style: TextStyle(
-              color: setCardColor(pokeData.type1),
+              color: setTypeColor(pokeData.type1),
               fontSize: 17,
               fontWeight: FontWeight.w900,
             ),

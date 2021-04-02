@@ -24,7 +24,7 @@ class PokeStats extends StatelessWidget {
             label,
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: setCardColor(pokeData.type1),
+              color: setTypeColor(pokeData.type1),
             ),
           ),
           Spacer(),
@@ -32,7 +32,7 @@ class PokeStats extends StatelessWidget {
             convertValue(value),
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: setCardColor(pokeData.type1),
+              color: setTypeColor(pokeData.type1),
             ),
           ),
           Container(
