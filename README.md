@@ -1,8 +1,9 @@
+
  <h1 align="center">FlutterDex</h1>
 
 <p align="center">
 <img src="" width="30%"></img> 
-<img src="" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/60814961/113476858-523bcf00-94a8-11eb-9266-2abd6c698cc9.png" width="30%"></img> 
 <img src="" width="30%"></img> 
 </p>
 
