@@ -2,10 +2,12 @@
  <h1 align="center">FlutterDex</h1>
 
 <p align="center">
-<img src="" width="30%"></img> 
-<img src="https://user-images.githubusercontent.com/60814961/113476858-523bcf00-94a8-11eb-9266-2abd6c698cc9.png" width="30%"></img> 
-<img src="" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/60814961/113476858-523bcf00-94a8-11eb-9266-2abd6c698cc9.png" width="25%"></img> 
+<img src="https://user-images.githubusercontent.com/60814961/113578115-7f28e700-964c-11eb-9a8f-3bb9bd045f5a.png" width="25%"></img> 
+<img src="https://user-images.githubusercontent.com/60814961/113578117-80f2aa80-964c-11eb-8873-f61cd1d962d6.png" width="25%"></img>
+<img src="https://user-images.githubusercontent.com/60814961/113578126-818b4100-964c-11eb-898c-23eaba79e428.png" width="25%"></img> 
 </p>
+
 
 # FlutterDex
 
