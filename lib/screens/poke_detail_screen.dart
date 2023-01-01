@@ -72,6 +72,7 @@ class _PokeDetailScreenState extends State<PokeDetailScreen> {
     final pokeData = providerData.pokemon;
 
     return Scaffold(
+        appBar: AppBar(),
         backgroundColor: providerData.isLoading
             ? Colors.white
             : providerData.isRequestError
