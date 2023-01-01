@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutterdex/helpers/map_cardColor.dart';
 import 'package:flutterdex/models/pokemon.dart';

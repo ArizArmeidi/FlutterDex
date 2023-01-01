@@ -1,4 +1,4 @@
-package com.example.FlutterDex
+package com.example.flutter_dex
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+
 import 'search_bar.dart';
 
 class HomeSearch extends StatelessWidget {

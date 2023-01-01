@@ -36,8 +36,8 @@ class RequestError extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-              onPrimary: Colors.white,
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.red,
               padding: EdgeInsets.symmetric(horizontal: 25),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
